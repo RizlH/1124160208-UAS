@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pembayaran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Aktifkan dark mode berbasis class
+        tailwind.config = {
+        darkMode: 'class'
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-800 dark:to-gray-900 min-h-screen py-8 text-gray-900 dark:text-gray-100">
+
+    <header class="flex items-center justify-between px-10 bg-transparent dark:bg-transparent">
+        <!-- Gambar kiri -->
+        <div class="flex-shrink-0">
+        <img src="assets/img/logo.png" alt="Foto Kiri" class="w-12 h-12 rounded-full object-cover">
+        </div>
+
+        <!-- Tombol Toggle Kanan -->
+        <div class="flex-shrink-0">
+        <button id="darkModeToggle" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center space-x-2">
+            <span class="icon-sun hidden dark:inline">☀️</span>
+            <span class="icon-moon dark:hidden">🌙</span>
+            <span class="label dark:hidden">Dark Mode</span>
+            <span class="label hidden dark:inline">Light Mode</span>
+        </button>
+        </div>
+    </header>
+
+    <!-- Header -->
+    <div class="container mx-auto max-w-4xl px-4">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-2">Open Payment Portal</h1>
+            <p class="text-gray-600 dark:text-gray-300">Global Institute</p>
+            <p class="text-gray-600 dark:text-gray-300">NIM: 1124160208</p>
+            <p class="text-gray-600 dark:text-gray-300">Nama: Rizal Hermawan</p>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
