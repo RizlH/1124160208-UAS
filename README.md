@@ -13,23 +13,23 @@
 ## 📸 Screenshots
 Terang :
 <div align="center">
-  <img src="assets/img/ss-lg1.png" alt="Screenshot 1" width="600">
+  <img src="open-payment-portal-1124160208/assets/img/ss-lg1.png" alt="Screenshot 1" width="600">
   <p><em>Screenshot Mode Terang 1</em></p>
 </div>
 
 <div align="center">
-  <img src="assets/img/ss-lg2.png" alt="Screenshot 2" width="600">
+  <img src="open-payment-portal-1124160208/assets/img/ss-lg2.png" alt="Screenshot 2" width="600">
   <p><em>Screenshot Mode Terang 2</em></p>
 </div>
 
 Gelap :
 <div align="center">
-  <img src="assets/img/ss-dr1.png" alt="Screenshot 1" width="600">
+  <img src="open-payment-portal-1124160208/assets/img/ss-dr1.png" alt="Screenshot 1" width="600">
   <p><em>Screenshot Mode Gelap 1</em></p>
 </div>
 
 <div align="center">
-  <img src="assets/img/ss-dr2.png" alt="Screenshot 2" width="600">
+  <img src="open-payment-portal-1124160208/assets/img/ss-dr2.png" alt="Screenshot 2" width="600">
   <p><em>Screenshot Mode Gelap 2</em></p>
 </div>
 
