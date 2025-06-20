@@ -6,7 +6,7 @@
     <title>Sistem Pembayaran</title>
     <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-800 dark:to-gray-900 min-h-screen py-8 text-gray-900 dark:text-gray-100">
 
@@ -147,13 +147,101 @@
             </form>
             </div>
 
-            
+            <!-- Riwayat Transaksi -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-colors duration-300">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-green-600 dark:text-green-400 mr-2 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-300">Riwayat Transaksi</h2>
+                    </div>
+                    <button 
+                        id="clearHistoryBtn"
+                        class="px-4 py-2 text-sm bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors duration-200 hidden"
+                    >
+                        Hapus Semua
+                    </button>
+                </div>
+
+                <!-- Statistics -->
+                <div class="grid grid-cols-3 gap-4 mb-6">
+                    <div class="text-center p-3 bg-blue-50 dark:bg-blue-900 rounded-lg transition-colors duration-300">
+                        <div class="text-2xl font-bold text-blue-600 dark:text-blue-300 transition-colors duration-300" id="totalTransactions">0</div>
+                        <div class="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">Transaksi</div>
+                    </div>
+                    <div class="text-center p-3 bg-green-50 dark:bg-green-900 rounded-lg transition-colors duration-300">
+                        <div class="text-2xl font-bold text-green-600 dark:text-green-300 transition-colors duration-300" id="totalRevenue">Rp 0</div>
+                        <div class="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">Pendapatan</div>
+                    </div>
+                    <div class="text-center p-3 bg-purple-50 dark:bg-purple-900 rounded-lg transition-colors duration-300">
+                        <div class="text-2xl font-bold text-purple-600 dark:text-purple-300 transition-colors duration-300" id="avgTransaction">Rp 0</div>
+                        <div class="text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">Rata-rata</div>
+                    </div>
+                </div>
+
+                <!-- Transaction List -->
+                <div id="transactionList" class="space-y-3 max-h-96 overflow-y-auto">
+                    <!-- Empty State -->
+                    <div id="emptyState" class="text-center py-8 text-gray-500 dark:text-gray-400 transition-colors duration-300">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-gray-300 dark:text-gray-600 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        <p class="font-medium">Belum ada transaksi</p>
+                        <p class="text-sm">Lakukan pembayaran pertama Anda!</p>
+                    </div>
+                </div>
+            </div>
+
 
         </div>
-
     </div>
 
+    <!-- Modal Konfirmasi Pembayaran -->
+    <div id="paymentModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+            <div class="text-center mb-4">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Pembayaran Berhasil!</h3>
+                <p class="text-gray-600">Transaksi Anda telah diproses</p>
+            </div>
+            
+            <div id="paymentDetails" class="bg-gray-50 rounded-lg p-4 mb-4 text-sm">
+                <!-- Detail pembayaran akan ditampilkan di sini -->
+            </div>
+            
+            <button 
+                id="closeModalBtn"
+                class="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
+            >
+                Tutup
+            </button>
+        </div>
+    </div>
 
+    <!-- Template untuk Transaction Item -->
+    <template id="transactionTemplate">
+        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200">
+            <div class="flex justify-between items-start mb-2">
+                <div>
+                    <h4 class="font-medium text-gray-800 transaction-customer"></h4>
+                    <p class="text-sm text-gray-600 transaction-product"></p>
+                </div>
+                <div class="text-right">
+                    <div class="font-semibold text-green-600 transaction-amount"></div>
+                    <div class="text-xs text-gray-500 transaction-time"></div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+                <span class="transaction-method px-2 py-1 rounded-full text-xs"></span>
+                <span class="transaction-status px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">Berhasil</span>
+            </div>
+        </div>
+    </template>
     <script src="script.js"></script>
 </body>
 </html>
